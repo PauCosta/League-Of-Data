@@ -114,7 +114,7 @@ function JugadorsConcret() {
             action: 'cargoquery',
             format: 'json',
             tables: 'ScoreboardPlayers',
-            fields: 'Link,Kills,Deaths,Assists,CS,Gold,DamageToChampions,TeamGold,GameId',
+            fields: 'Link,Kills,Deaths,Assists,CS,Gold,DamageToChampions,TeamGold,GameId,TeamKills',
             where: `OverviewPage="${ligaNombre}" AND Link LIKE "%${jugadorId}%"`,
             limit: '10000',
           }),
@@ -126,7 +126,9 @@ function JugadorsConcret() {
         let totalKills = 0, totalDeaths = 0, totalAssists = 0;
         let totalCS = 0, totalGold = 0, totalDamage = 0;
         let totalTeamGold = 0;
+        let totalTeamKills = 0;
         let totalGames = 0;
+        
 
         const teamKillsPorPartida = {};
 
@@ -145,6 +147,7 @@ function JugadorsConcret() {
           const gold = parseInt(row.Gold || 0);
           const damage = parseInt(row.DamageToChampions || 0);
           const teamGold = parseInt(row.TeamGold || 0);
+          const teamKills = parseInt(row.TeamKills || 0);
 
           totalKills += kills;
           totalDeaths += deaths;
@@ -153,14 +156,15 @@ function JugadorsConcret() {
           totalGold += gold;
           totalDamage += damage;
           totalTeamGold += teamGold;
+          totalTeamKills += teamKills;
           totalGames++;
         });
 
         const kda = ((totalKills + totalAssists) / Math.max(1, totalDeaths)).toFixed(2);
-        const kp = ((totalKills + totalAssists) / Object.values(teamKillsPorPartida).reduce((a, b) => a + b, 0) * 100).toFixed(1);
+        const kp = ((totalKills + totalAssists) / Math.max(1, totalTeamKills) * 100).toFixed(1);
         const csm = (totalCS / (totalGames * 30)).toFixed(2);
         const or = ((totalGold / Math.max(1, totalTeamGold)) * 100).toFixed(1);
-        const dmgM = (totalDamage / totalGames).toFixed(0);
+        const dmgM = (totalDamage / (totalGames * 30)).toFixed(0);
         const dmgPct = ((totalDamage / Math.max(1, totalTeamGold)) * 100).toFixed(1);
 
         setEstadisticas({

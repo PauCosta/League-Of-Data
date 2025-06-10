@@ -66,7 +66,7 @@ function Header() {
         {dropdownOpen && (
           <div className="language-dropdown">
             <div className="language-option language-label">
-              <img src="/uk_flag.png" alt="UK Flag" className="flag-icon" />
+              <img src="/uk_flag.png" alt="UK Flag" className="flag-icon" /> 
               English
             </div>
           </div>

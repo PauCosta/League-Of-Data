@@ -39,7 +39,7 @@ function Home() {
             rel="noopener noreferrer"
           >
             <img
-              src="/home_diccionari.png"
+              src="/home_diccionari.png" 
               alt="Diccionari"
               className="dictionary-icon"
             />

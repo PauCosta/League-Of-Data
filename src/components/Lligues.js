@@ -10,7 +10,7 @@ function Lligues() {
         <h1 className="lligues-main-title">LLIGUES</h1>
         <div className="lligues-grid">
           <Link to="/lligues/LEC">
-            <img src="/LEC.png" alt="LEC" className="lligues-lliga-logo" />
+            <img src="/LEC.png" alt="LEC" className="lligues-lliga-logo" /> 
           </Link>
           <Link to="/lligues/LCS">
           <img src="/LCS.png" alt="LCS" className="lligues-lliga-logo" />

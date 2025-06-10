@@ -11,7 +11,7 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/instagram_icon.png" alt="Instagram" />
+            <img src="/instagram_icon.png" alt="Instagram" /> 
           </a>
         </span>
         <span>

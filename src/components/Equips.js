@@ -14,7 +14,7 @@ function Equips() {
         <p className="subtitle">Equips més populars</p>
 
         <div className="teams-grid">
-          <Link to="/equips/T1"><img src="/team_T1.png" alt="T1" className="team-logo" /></Link>
+          <Link to="/equips/T1"><img src="/team_T1.png" alt="T1" className="team-logo" /></Link> 
           <Link to="/equips/FNC"><img src="/team_FNC.png" alt="Fnatic" className="team-logo" /></Link>
           <Link to="/equips/GENG"><img src="/team_GENG.png" alt="Gen.G" className="team-logo" /></Link>
           <Link to="/equips/TL"><img src="/team_TL.png" alt="Team Liquid" className="team-logo" /></Link>
