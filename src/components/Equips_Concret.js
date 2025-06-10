@@ -7,22 +7,26 @@ function EquipsConcret() {
   const { teamId } = useParams();
 
   const teamMapping = {
-    T1: 'T1',
-    FNC: 'Fnatic',
-    GENG: 'Gen.G',
-    TL: 'Team Liquid',
-    G2: 'G2 Esports',
-    BLG: 'Bilibili Gaming',
+     T1: 'T1', FNC: 'Fnatic', GENG: 'Gen.G', TL: 'Team Liquid', G2: 'G2 Esports', BLG: 'Bilibili Gaming',
+     MKOI: 'Movistar KOI', TH: 'Team Heretics', BDS: 'Team BDS', SK: 'SK Gaming', VIT: 'Team Vitality',
+     KC: 'Karmine Corp', GX: 'GiantX', RGE: 'Rogue', KT: 'KT Rolster', HLE: 'Hanwha Life', DK: 'Dplus KIA',
+     DRX: 'DRX', NS: 'Nongshim Redforce', DNF: 'DN Freecs', BRO: 'OKsavingbank Brion', BFX: 'BNK FearX',
+     JDG: 'JD Gaming', TES: 'Top Esports', WBG: 'Weibo Gaming', LNG: 'LNG Esports', EDG: 'Edward Gaming',
+     IG: 'Invictus Gaming', FPX: 'FunPlus Phoenix', RA: 'Rare Atom', RNG: 'Royal Never Give Up',
+     NIP: 'Ninjas in Pyjamas', OMG: 'Oh My God', WE: 'Team WE', AL: 'Anyones Legends',
+     LGD: 'LGD Gaming', TT: 'ThunderTalk Gaming', UP: 'Ultra Prime',
+     FLY: 'FlyQuest', C9: 'Cloud9', NRG: 'NRG', '100T': '100 Thieves',
+     IMT: 'Immortals', DIG: 'Dignitas', SR: 'Shopify Rebellion',
   };
+  
   const teamNombre = teamMapping[teamId] || teamId;
 
   const teamToLeague = {
-    T1: 'LCK',
-    GENG: 'LCK',
-    FNC: 'LEC',
-    G2: 'LEC',
-    TL: 'LCS',
-    BLG: 'LPL',
+    T1: 'LCK', FNC: 'LEC', GENG: 'LCK', TL: 'LCS', G2: 'LEC', BLG: 'LPL', MKOI: 'LEC', TH: 'LEC', BDS: 'LEC', 
+    SK: 'LEC', VIT: 'LEC', KC: 'LEC', GX: 'LEC', RGE: 'LEC', KT: 'LCK', HLE: 'LCK', DK: 'LCK', DRX: 'LCK', 
+    NS: 'LCK', DNF: 'LCK', BRO: 'LCK', BFX: 'LCK', JDG: 'LPL', TES: 'LPL', WBG: 'LPL', LNG: 'LPL', EDG: 'LPL', 
+    IG: 'LPL', FPX: 'LPL', RA: 'LPL', RNG: 'LPL', NIP: 'LPL', OMG: 'LPL', WE: 'LPL', AL: 'LPL', LGD: 'LPL', 
+    TT: 'LPL', UP: 'LPL', FLY: 'LCS', C9: 'LCS', NRG: 'LCS', "100T": 'LCS', IMT: 'LCS', DIG: 'LCS', SR: 'LCS'
   };
   const ligaId = teamToLeague[teamId];
   const ligaMapping = {
@@ -57,7 +61,7 @@ function EquipsConcret() {
         const data = await response.json();
         setClasificacion(data.cargoquery?.map(item => item.title) || []);
       } catch (err) {
-        console.error('Error obtenint la classificació:', err);
+        console.error('Error en obtenir la classificació:', err);
       }
     };
 
@@ -110,7 +114,7 @@ function EquipsConcret() {
 
         setCampeones(arr);
       } catch (err) {
-        console.error('Error obtenint els campions de l’equip:', err);
+        console.error('Error en obtenir els campions de l’equip:', err);
       }
     };
 
@@ -191,7 +195,7 @@ function EquipsConcret() {
 
         setEstadisticasJugadores(playerStats);
       } catch (err) {
-        console.error('Error obtenint estadístiques dels jugadors:', err);
+        console.error('Error en obtenir estadístiques dels jugadors:', err);
       }
     };
 
@@ -217,15 +221,19 @@ function EquipsConcret() {
                   <thead>
                     <tr><th>#</th><th>Equip</th><th>Record</th></tr>
                   </thead>
-                  <tbody>
-                    {clasificacion.map((equipo, idx) => (
-                      <tr key={idx}>
+                  
+                <tbody>
+                  {clasificacion.map((equipo, idx) => {
+                    const esEquipoActual = equipo.Team.toLowerCase() === teamNombre.toLowerCase();
+                    return (
+                      <tr key={idx} className={esEquipoActual ? 'equipo-actual' : ''}>
                         <td>{idx + 1}</td>
-                        <td>{equipo.Team}</td>
+                        <td style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipo.Team}</td>
                         <td>{`${equipo.WinSeries}-${equipo.LossSeries}`}</td>
                       </tr>
-                    ))}
-                  </tbody>
+                    );
+                  })}
+                </tbody>
                 </table>
               </div>
             )}
@@ -283,5 +291,6 @@ function EquipsConcret() {
     </div>
   );
 }
+
 
 export default EquipsConcret;

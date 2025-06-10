@@ -57,7 +57,7 @@ function JugadorsConcret() {
         const data = await response.json();
         setClasificacion(data.cargoquery?.map(item => item.title) || []);
       } catch (err) {
-        console.error('Error obtenint la classificació:', err);
+        console.error('Error en obtenir la classificació:', err);
       }
     };
 
@@ -100,7 +100,7 @@ function JugadorsConcret() {
 
         setCampeones(arr);
       } catch (err) {
-        console.error('Error obtenint campions del jugador:', err);
+        console.error('Error en obtenir campions del jugador:', err);
       }
     };
 
@@ -177,7 +177,7 @@ function JugadorsConcret() {
         });
 
       } catch (err) {
-        console.error('Error obtenint estadístiques del jugador:', err);
+        console.error('Error en obtenir estadístiques del jugador:', err);
       }
     };
 

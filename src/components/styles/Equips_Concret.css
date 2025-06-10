@@ -77,3 +77,8 @@
 .table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.05);
 }
+
+.equipo-actual {
+  background-color: #433558;
+  font-weight: bold;
+}

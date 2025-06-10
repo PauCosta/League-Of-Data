@@ -33,5 +33,5 @@ app.post('/api/leaguepedia', async (req, res) => {
 
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`✅ Proxy escuchando en http://localhost:${PORT}`);
+  console.log(`Proxy actiu a http://localhost:${PORT}`);
 });
