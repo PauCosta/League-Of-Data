@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #433558;
+  color: white;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #9270b2;
+  padding: 0.8rem 2rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-links a{
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.language-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.language-dropdown {
+  position: absolute;
+  background-color: #9270b2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.language-option {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-weight: 500;
+}
+
+.language-option:hover {
+  background-color: #a48eb8;
+}
+
+.flag-icon {
+  width: 20px;
+  height: auto;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+.language-label {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.main-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.main-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.main-content p {
+  margin: 1rem 0 2rem;
+  font-size: 1.1rem;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+.dictionary-section {
+  margin: 2rem 0;
+}
+
+.dictionary-section p {
+  font-size: 1rem;
+}
+
+.highlight-link {
+  color: #d8e12a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dictionary-icon {
+  width: 150px;
+  height: auto;
+}
+
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 2rem;
+  background-color: #2c1f3b;
+  color: #aaa;
+}
+
+.social-icons span {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.nav-links a.active {
+  text-decoration: none;
+  border-bottom: 3px solid white;
+  padding-bottom: 4px; 
+}

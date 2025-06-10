@@ -1,0 +1,23 @@
+.lligues-main-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 5rem;
+  margin-bottom: 8rem;
+}
+
+.lligues-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5rem;
+  flex-wrap: wrap;
+}
+
+.lligues-lliga-logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 40px;
+  object-fit: cover;
+  background-color: white;
+  padding: 0.5rem;
+}

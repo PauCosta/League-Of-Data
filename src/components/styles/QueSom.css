@@ -1,0 +1,45 @@
+.que-som p {
+  text-align: center;
+  max-width: 800px;
+  margin: 1rem auto;
+  line-height: 1.5;
+  color: white;
+}
+
+
+.intro-text,
+.secondary-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 1rem auto;
+  line-height: 1.5;
+}
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.side-image {
+  width: 20%;
+  border-radius: 1rem;
+  height: auto;
+}
+
+.side-image2 {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 1rem;
+  height: auto;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 1rem;
+}
