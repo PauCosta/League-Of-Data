@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/League-Of-Data/static/css/main.b3d986f4.css",
-    "main.js": "/League-Of-Data/static/js/main.8ad723eb.js",
+    "main.js": "/League-Of-Data/static/js/main.d621090e.js",
     "index.html": "/League-Of-Data/index.html",
     "main.b3d986f4.css.map": "/League-Of-Data/static/css/main.b3d986f4.css.map",
-    "main.8ad723eb.js.map": "/League-Of-Data/static/js/main.8ad723eb.js.map"
+    "main.d621090e.js.map": "/League-Of-Data/static/js/main.d621090e.js.map"
   },
   "entrypoints": [
     "static/css/main.b3d986f4.css",
-    "static/js/main.8ad723eb.js"
+    "static/js/main.d621090e.js"
   ]
 }
