@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import BuscadorEquips from './Buscador_Equips.js';
 import './styles/Home.css';
 import './styles/Equips_Concret.css';
 
@@ -9,7 +10,7 @@ function EquipsConcret() {
   const teamMapping = {
      T1: 'T1', FNC: 'Fnatic', GENG: 'Gen.G', TL: 'Team Liquid', G2: 'G2 Esports', BLG: 'Bilibili Gaming',
      MKOI: 'Movistar KOI', TH: 'Team Heretics', BDS: 'Team BDS', SK: 'SK Gaming', VIT: 'Team Vitality',
-     KC: 'Karmine Corp', GX: 'GiantX', RGE: 'Rogue', KT: 'KT Rolster', HLE: 'Hanwha Life', DK: 'Dplus KIA',
+     KC: 'Karmine Corp', GX: 'GiantX', RGE: 'Rogue (European Team)', KT: 'KT Rolster', HLE: 'Hanwha Life', DK: 'Dplus KIA',
      DRX: 'DRX', NS: 'Nongshim Redforce', DNF: 'DN Freecs', BRO: 'OKsavingbank Brion', BFX: 'BNK FearX',
      JDG: 'JD Gaming', TES: 'Top Esports', WBG: 'Weibo Gaming', LNG: 'LNG Esports', EDG: 'Edward Gaming',
      IG: 'Invictus Gaming', FPX: 'FunPlus Phoenix', RA: 'Rare Atom', RNG: 'Royal Never Give Up',
@@ -207,6 +208,7 @@ function EquipsConcret() {
   return (
     <div className="main-container">
       <main className="equips-concret-content">
+        <BuscadorEquips variant="concret"/>
         <div className="team-header">
           <img src={`/team_${teamId}.png`} alt={teamId} className="team-logo-large" />
           <h1 className="team-name-title">{teamNombre}</h1>

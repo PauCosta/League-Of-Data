@@ -29,7 +29,7 @@ function Header() {
 
   return (
     <header className="navbar">
-      <div className="logo">LoD</div>
+      <Link to="/" className="logo">LoD</Link>
       <nav className="nav-links">
         <Link to="/">Inici</Link>
         <Link

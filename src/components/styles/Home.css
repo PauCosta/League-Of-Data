@@ -24,6 +24,8 @@ body {
 .logo {
   font-weight: bold;
   font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
 }
 
 .nav-links a{
