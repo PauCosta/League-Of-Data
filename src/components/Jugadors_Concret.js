@@ -7,18 +7,19 @@ function JugadorsConcret() {
 
   const jugadorToEquipo = {
     Faker: 'T1',
-    Caps: 'G2',
-    Chovy: 'GENG',
-    Bin: 'BLG',
-    Peanut: 'GENG',
-    Mikyx: 'G2',
+    Caps: 'G2 Esports',
+    Chovy: 'GEN.G',
+    Bin: 'Bilibili Gaming',
+    Peanut: 'GEN.G',
+    Mikyx: 'Fnatic',
   };
 
   const equipoToLiga = {
     T1: 'LCK',
-    G2: 'LEC',
-    GENG: 'LCK',
-    BLG: 'LPL',
+    "G2 Esports": 'LEC',
+    "Fnatic": 'LEC',
+    "GEN.G": 'LCK',
+    "Bilibili Gaming": 'LPL',
   };
 
   const ligaMapping = {
@@ -208,13 +209,21 @@ function JugadorsConcret() {
                     </tr>
                   </thead>
                   <tbody>
-                    {clasificacion.map((equipo, idx) => (
-                      <tr key={idx}>
+                    {clasificacion.map((equipoClasificado, idx) => {
+                    const esEquipoActual = equipoClasificado.Team.toLowerCase() === equipo.toLowerCase();
+                    return (
+                      <tr
+                        key={idx}
+                        style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }}
+                      >
                         <td>{idx + 1}</td>
-                        <td>{equipo.Team}</td>
-                        <td>{`${equipo.WinSeries}-${equipo.LossSeries}`}</td>
+                        <td style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>
+                          {equipoClasificado.Team}
+                        </td>
+                        <td>{`${equipoClasificado.WinSeries}-${equipoClasificado.LossSeries}`}</td>
                       </tr>
-                    ))}
+                    );
+                    })}
                   </tbody>
                 </table>
               </div>

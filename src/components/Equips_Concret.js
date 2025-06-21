@@ -1,4 +1,4 @@
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BuscadorEquips from './Buscador_Equips.js';
 import './styles/Home.css';
@@ -10,11 +10,11 @@ function EquipsConcret() {
   const teamMapping = {
      T1: 'T1', FNC: 'Fnatic', GENG: 'Gen.G', TL: 'Team Liquid', G2: 'G2 Esports', BLG: 'Bilibili Gaming',
      MKOI: 'Movistar KOI', TH: 'Team Heretics', BDS: 'Team BDS', SK: 'SK Gaming', VIT: 'Team Vitality',
-     KC: 'Karmine Corp', GX: 'GiantX', RGE: 'Rogue (European Team)', KT: 'KT Rolster', HLE: 'Hanwha Life', DK: 'Dplus KIA',
-     DRX: 'DRX', NS: 'Nongshim Redforce', DNF: 'DN Freecs', BRO: 'OKsavingbank Brion', BFX: 'BNK FearX',
+     KC: 'Karmine Corp', GX: 'GiantX', RGE: 'Rogue (European Team)', KT: 'KT Rolster', HLE: 'Hanwha Life Esports', DK: 'Dplus KIA',
+     DRX: 'DRX', NS: 'Nongshim Redforce', DNF: 'DN Freecs', BRO: 'OKsavingsbank Brion', BFX: 'BNK FearX',
      JDG: 'JD Gaming', TES: 'Top Esports', WBG: 'Weibo Gaming', LNG: 'LNG Esports', EDG: 'Edward Gaming',
      IG: 'Invictus Gaming', FPX: 'FunPlus Phoenix', RA: 'Rare Atom', RNG: 'Royal Never Give Up',
-     NIP: 'Ninjas in Pyjamas', OMG: 'Oh My God', WE: 'Team WE', AL: 'Anyones Legends',
+     NIP: 'Ninjas in Pyjamas.CN', OMG: 'Oh My God', WE: 'Team WE', AL: "Anyone's Legend",
      LGD: 'LGD Gaming', TT: 'ThunderTalk Gaming', UP: 'Ultra Prime',
      FLY: 'FlyQuest', C9: 'Cloud9', NRG: 'NRG', '100T': '100 Thieves',
      IMT: 'Immortals', DIG: 'Dignitas', SR: 'Shopify Rebellion',
@@ -41,6 +41,7 @@ function EquipsConcret() {
   const [clasificacion, setClasificacion] = useState([]);
   const [campeones, setCampeones] = useState([]);
   const [estadisticasJugadores, setEstadisticasJugadores] = useState([]);
+  const [roster, setRoster] = useState([]);
 
   useEffect(() => {
     const fetchClasificacion = async () => {
@@ -150,7 +151,7 @@ function EquipsConcret() {
         });
 
         rows.forEach(row => {
-          const rawName = row.Link.replace(/\s*\(.*?\)\s*/g, '');
+          const rawName = row.Link.replace(/\s*\(.*?\)\s*/g, ''); //Elimina els entre parèntesis
           const name = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase();
           const kills = parseInt(row.Kills || 0);
           const deaths = parseInt(row.Deaths || 0);
@@ -200,10 +201,46 @@ function EquipsConcret() {
       }
     };
 
+    const fetchRoster = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'TournamentRosters',
+            fields: 'RosterLinks,Roles',
+            where: `OverviewPage="${ligaNombre}" AND Team="${teamNombre}"`,
+          }),
+        });
+
+        const data = await response.json();
+        const rows = data.cargoquery?.map(d => d.title) || [];
+
+        if (rows.length === 0) return;
+
+        const rosterLinks = rows[0].RosterLinks?.split(';;') || [];
+        const roles = rows[0].Roles?.split(';;') || [];
+
+        const jugadores = rosterLinks
+          .map((j, idx) => {
+            const alias = j.replace(/\s*\(.*?\)\s*/g, '').trim(); //Treu els parèntesis amb el nom dels alias
+            return { jugador: alias, rol: roles[idx] };
+          })
+          .filter(p => ['Top', 'Jungle', 'Mid', 'Bot', 'Support', 'ADC'].includes(p.rol));
+
+        setRoster(jugadores);
+      } catch (err) {
+        console.error('Error en obtenir el roster:', err);
+      }
+    };
+
     fetchClasificacion();
     fetchCampeones();
     fetchEstadisticasJugadores();
-  }, [ligaNombre, teamId]);
+    fetchRoster();
+  }, [ligaNombre, teamNombre, teamId]);
 
   return (
     <div className="main-container">
@@ -214,6 +251,28 @@ function EquipsConcret() {
           <h1 className="team-name-title">{teamNombre}</h1>
         </div>
 
+        {roster.length > 0 && (
+          <div className="table roster-table">
+            <h2>Roster Actiu ({ligaId})</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Rol</th>
+                  <th>Jugador</th>
+                </tr>
+              </thead>
+              <tbody>
+                {roster.map((j, i) => (
+                  <tr key={i}>
+                    <td>{j.rol}</td>
+                    <td>{j.jugador}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
         <div className="tables-wrapper">
           <div className="table-row">
             {clasificacion.length > 0 && (
@@ -223,19 +282,18 @@ function EquipsConcret() {
                   <thead>
                     <tr><th>#</th><th>Equip</th><th>Record</th></tr>
                   </thead>
-                  
-                <tbody>
-                  {clasificacion.map((equipo, idx) => {
-                    const esEquipoActual = equipo.Team.toLowerCase() === teamNombre.toLowerCase();
-                    return (
-                      <tr key={idx} className={esEquipoActual ? 'equipo-actual' : ''}>
-                        <td>{idx + 1}</td>
-                        <td style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipo.Team}</td>
-                        <td>{`${equipo.WinSeries}-${equipo.LossSeries}`}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
+                  <tbody>
+                    {clasificacion.map((equipo, idx) => {
+                      const esEquipoActual = equipo.Team.toLowerCase() === teamNombre.toLowerCase();
+                      return (
+                        <tr style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }} key={idx}>
+                          <td>{idx + 1}</td>
+                          <td style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipo.Team}</td>
+                          <td>{`${equipo.WinSeries}-${equipo.LossSeries}`}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </div>
             )}
@@ -293,6 +351,5 @@ function EquipsConcret() {
     </div>
   );
 }
-
 
 export default EquipsConcret;

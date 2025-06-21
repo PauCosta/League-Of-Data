@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import BuscadorJugadors from './Buscador_Jugadors.js';
 import './styles/Jugadors.css';
 
 function Jugadors() {
@@ -7,9 +8,7 @@ function Jugadors() {
       <main className="main-content jugadors-page">
         <div className="header-row">
             <h1 className="jugadors-title">JUGADORS</h1>
-            <div className="search-container">
-                <input type="text" className="search-bar" placeholder="Busca un jugador..." />
-            </div>
+            <BuscadorJugadors />
         </div>
         <p className="subtitle">Jugadors més populars</p>
 

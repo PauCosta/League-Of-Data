@@ -78,7 +78,6 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.equipo-actual {
-  background-color: #433558;
-  font-weight: bold;
+.table.roster-table {
+  margin-bottom: 40px;
 }

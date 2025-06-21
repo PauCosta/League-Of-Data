@@ -41,7 +41,7 @@ const teams = [
   { id: 'NIP', names: ['ninjas in pyjamas', 'nip'] },
   { id: 'OMG', names: ['oh my god', 'omg'] },
   { id: 'WE', names: ['team we', 'we'] },
-  { id: 'AL', names: ['anyones legends', 'al'] },
+  { id: 'AL', names: ["anyone's legend", 'al'] },
   { id: 'LGD', names: ['lgd gaming', 'lgd'] },
   { id: 'TT', names: ['thundertalk gaming', 'tt'] },
   { id: 'UP', names: ['ultra prime', 'up'] },
