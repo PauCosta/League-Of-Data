@@ -100,3 +100,16 @@
   color: rgb(0, 179, 0);
 }
 
+.lligues-team-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lligues-team-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+

@@ -4,6 +4,74 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+const teams = [
+  // LCK
+  { id: 'T1', names: ['t1'] },
+  { id: 'GENG', names: ['gen.g', 'geng', 'gen g'] },
+  { id: 'KT', names: ['kt rolster', 'kt'] },
+  { id: 'HLE', names: ['hanwha life', 'hle', 'hanwha', 'hanwha life esports'] },
+  { id: 'DK', names: ['dplus kia', 'dk'] },
+  { id: 'DRX', names: ['drx'] },
+  { id: 'NS', names: ['nongshim redforce', 'ns'] },
+  { id: 'DNF', names: ['dn freecs', 'dnf'] },
+  { id: 'BRO', names: ['oksavingsbank brion', 'ok brion', 'bro'] },
+  { id: 'BFX', names: ['bnk fearx', 'bfx'] },
+
+  // LEC
+  { id: 'G2', names: ['g2 esports', 'g2'] },
+  { id: 'FNC', names: ['fnatic', 'fnc'] },
+  { id: 'MKOI', names: ['movistar koi', 'koi', 'mkoi'] },
+  { id: 'TH', names: ['team heretics', 'heretics', 'th'] },
+  { id: 'BDS', names: ['team bds', 'bds'] },
+  { id: 'SK', names: ['sk gaming', 'sk'] },
+  { id: 'VIT', names: ['team vitality', 'vitality', 'vit'] },
+  { id: 'KC', names: ['karmine corp', 'kc'] },
+  { id: 'GX', names: ['giantx', 'gx'] },
+  { id: 'RGE', names: ['rogue', 'rge', 'rogue (european team)'] },
+
+  // LPL
+  { id: 'JDG', names: ['jd gaming', 'jdg'] },
+  { id: 'BLG', names: ['bilibili gaming', 'blg', 'bilibili'] },
+  { id: 'TES', names: ['top esports', 'tes', 'top'] },
+  { id: 'WBG', names: ['weibo gaming', 'wbg'] },
+  { id: 'LNG', names: ['lng esports', 'lng'] },
+  { id: 'EDG', names: ['edward gaming', 'edg'] },
+  { id: 'IG', names: ['invictus gaming', 'ig', 'invictus'] },
+  { id: 'FPX', names: ['funplus phoenix', 'fpx'] },
+  { id: 'RA', names: ['rare atom', 'ra'] },
+  { id: 'RNG', names: ['royal never give up', 'rng', 'royal'] },
+  { id: 'NIP', names: ['ninjas in pyjamas', 'nip', 'ninjas in pyjamas.cn'] },
+  { id: 'OMG', names: ['oh my god', 'omg'] },
+  { id: 'WE', names: ['team we', 'we'] },
+  { id: 'AL', names: ["anyone's legend", 'al'] },
+  { id: 'LGD', names: ['lgd gaming', 'lgd'] },
+  { id: 'TT', names: ['thundertalk gaming', 'tt'] },
+  { id: 'UP', names: ['ultra prime', 'up'] },
+
+  // LCS
+  { id: 'TL', names: ['team liquid', 'liquid', 'tl'] },
+  { id: 'FLY', names: ['flyquest', 'fly'] },
+  { id: 'C9', names: ['cloud9', 'cloud 9', 'c9'] },
+  { id: 'NRG', names: ['nrg'] },
+  { id: '100T', names: ['100 thieves', '100t'] },
+  { id: 'IMT', names: ['immortals', 'imt'] },
+  { id: 'DIG', names: ['dignitas', 'dig'] },
+  { id: 'SR', names: ['shopify rebellion', 'shopify', 'sr'] },
+];
+
+function getTeamIdByName(name) {
+  if (!name) return null;
+  const lower = name.toLowerCase();
+  const team = teams.find(t => t.names.includes(lower));
+  return team?.id || null;
+}
+
+function getTeamLogoPath(ligaId, teamName) {
+  const teamId = getTeamIdByName(teamName);
+  if (!teamId) return null;
+  return `/TeamLogos_${ligaId}/${teamId}.png`;
+}
+
 function LliguesConcret() {
   const { t } = useTranslation();
   const { ligaId } = useParams();
@@ -264,7 +332,15 @@ function LliguesConcret() {
                     {clasificacion.map((equipo, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
-                        <td>{equipo.Team}</td>
+                        <td className="lligues-team-cell">
+                          <img
+                            src={getTeamLogoPath(ligaId, equipo.Team)}
+                            alt={equipo.Team}
+                            className="lligues-team-logo"
+                            onError={(e) => (e.target.style.display = 'none')}
+                          />
+                          <span>{equipo.Team}</span>
+                        </td>
                         <td className="win">{equipo.WinSeries}</td>
                         <td className="loss">{equipo.LossSeries}</td>
                       </tr>
@@ -320,7 +396,16 @@ function LliguesConcret() {
                     {mejoresKDA.map((player, idx) => (
                       <tr key={idx}>
                         <td>{player.Player}</td>
-                        <td>{player.Team}</td>
+                        <td className="lligues-team-cell">
+                        <img
+                          src={getTeamLogoPath(ligaId, player.Team)}
+                          alt={player.Team}
+                          className="lligues-team-logo"
+                          onError={e => (e.target.style.display = 'none')}
+                          style={{ marginRight: '8px', verticalAlign: 'middle', width: '24px', height: '24px' }}
+                        />
+                        {player.Team}
+                      </td>
                         <td>{player.KDA}</td>
                         <td>{player.Games}</td>
                       </tr>
@@ -348,7 +433,16 @@ function LliguesConcret() {
                     {topCSM.map((player, idx) => (
                       <tr key={idx}>
                         <td>{player.Player}</td>
-                        <td>{player.Team}</td>
+                        <td className="lligues-team-cell">
+                          <img
+                            src={getTeamLogoPath(ligaId, player.Team)}
+                            alt={player.Team}
+                            className="lligues-team-logo"
+                            onError={e => (e.target.style.display = 'none')}
+                            style={{ marginRight: '8px', verticalAlign: 'middle', width: '24px', height: '24px' }}
+                          />
+                          {player.Team}
+                        </td>
                         <td>{player.CSM}</td>
                         <td>{player.Games}</td>
                       </tr>
