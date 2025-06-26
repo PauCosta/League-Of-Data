@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
 import BuscadorJugadors from './Buscador_Jugadors.js';
 import './styles/Jugadors.css';
+import { useTranslation } from 'react-i18next';
 
 function Jugadors() {
+  const { t } = useTranslation();
+
   return (
     <div className="main-container">
       <main className="main-content jugadors-page">
         <div className="header-row">
-            <h1 className="jugadors-title">JUGADORS</h1>
+            <h1 className="jugadors-title">{t('jugadors.title')}</h1>
             <BuscadorJugadors />
         </div>
-        <p className="subtitle">Jugadors més populars</p>
+        <p className="subtitle">{t('jugadors.subtitle')}</p>
 
          <div className="jugadors-grid">
           <Link to="/jugadors/Faker"><img src="/player_Faker.png" alt="Faker" className="jugador-logo" /></Link>

@@ -2,8 +2,10 @@ import './styles/Home.css';
 import './styles/Lligues_Concret.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function LliguesConcret() {
+  const { t } = useTranslation();
   const { ligaId } = useParams();
   const [clasificacion, setClasificacion] = useState([]);
   const [campeones, setCampeones] = useState([]);
@@ -39,7 +41,7 @@ function LliguesConcret() {
         const data = await response.json();
         setClasificacion(data.cargoquery?.map(item => item.title) || []);
       } catch (err) {
-        console.error('Error en obtenir la classificació:', err);
+        console.error(t('errors_lligues.fetchClasificacion'), err);
       }
     };
 
@@ -98,7 +100,7 @@ function LliguesConcret() {
 
         setCampeones(campeonesArray);
       } catch (err) {
-        console.error('Error en obtenir campions fets servir:', err);
+        console.error(t('errors_lligues.fetchCampeones'), err);
       }
     };
 
@@ -160,7 +162,7 @@ function LliguesConcret() {
 
         setMejoresKDA(kdaArray);
       } catch (err) {
-        console.error('Error en obtenir els millors KDA:', err);
+        console.error(t('errors_lligues.fetchMejoresKDA'), err);
       }
     };
 
@@ -217,7 +219,7 @@ function LliguesConcret() {
 
         setTopCSM(topCSM);
       } catch (err) {
-        console.error('Error en obtenir CSM:', err);
+        console.error(t('errors_lligues.fetchTopCSM'), err);
       }
     };
 
@@ -225,7 +227,14 @@ function LliguesConcret() {
     fetchCampeones();
     fetchMejoresKDA();
     fetchTopCSM();
-  }, [ligaNombre]);
+  }, [ligaNombre, t]);
+
+  const getWinRateClass = (winRate) => {
+    const rate = parseFloat(winRate);
+    if (rate < 50) return 'winrate-red';
+    if (rate < 60) return 'winrate-yellow';
+    return 'winrate-green';
+  };
 
   return (
     <div className="main-container">
@@ -238,17 +247,17 @@ function LliguesConcret() {
         <div className="tables-wrapper">
           <div className="table-row">
             <div className="table">
-              <h2>Clasificación</h2>
+              <h2>{t('lligues_concret.clasificacion_title')}</h2>
               {clasificacion.length === 0 ? (
-                <p>Carregant classificació o no hi ha dades disponibles</p>
+                <p>{t('lligues_concret.loading_clasificacion')}</p>
               ) : (
                 <table>
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Equip</th>
-                      <th>Victòries</th>
-                      <th>Derrotes</th>
+                      <th>{t('lligues_concret.classificacioTeam')}</th>
+                      <th>{t('lligues_concret.wins')}</th>
+                      <th>{t('lligues_concret.losses')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -256,8 +265,8 @@ function LliguesConcret() {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{equipo.Team}</td>
-                        <td>{equipo.WinSeries}</td>
-                        <td>{equipo.LossSeries}</td>
+                        <td className="win">{equipo.WinSeries}</td>
+                        <td className="loss">{equipo.LossSeries}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -266,24 +275,24 @@ function LliguesConcret() {
             </div>
 
             <div className="table">
-              <h2>Campions fets servir</h2>
+              <h2>{t('lligues_concret.campeones_title')}</h2>
               {campeones.length === 0 ? (
-                <p>Carregant dades dels campions...</p>
+                <p>{t('lligues_concret.loading_campeones')}</p>
               ) : (
                 <table>
                   <thead>
                     <tr>
-                      <th>Campió</th>
-                      <th>Partides</th>
-                      <th>% Vict.</th>
+                      <th>{t('lligues_concret.champion')}</th>
+                      <th>{t('lligues_concret.games_played')}</th>
+                      <th>{t('lligues_concret.win_rate')}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {campeones.map((champ, index) => (
-                      <tr key={index}>
-                        <td>{champ.Champion}</td>
-                        <td>{champ.GamesPlayed}</td>
-                        <td>{champ.WinRate}%</td>
+                    {campeones.map((c, i) => (
+                      <tr key={i}>
+                        <td>{c.Champion}</td>
+                        <td>{c.GamesPlayed}</td>
+                        <td className={getWinRateClass(c.WinRate)}>{c.WinRate}%</td>
                       </tr>
                     ))}
                   </tbody>
@@ -294,22 +303,22 @@ function LliguesConcret() {
 
           <div className="table-row">
             <div className="table">
-              <h2>Millor KDA</h2>
+              <h2>{t('lligues_concret.mejores_kda_title')}</h2>
               {mejoresKDA.length === 0 ? (
-                <p>Carregant dades dels jugadors...</p>
+                <p>{t('lligues_concret.loading_mejores_kda')}</p>
               ) : (
                 <table>
                   <thead>
                     <tr>
-                      <th>Jugador</th>
-                      <th>Equip</th>
-                      <th>KDA</th>
-                      <th>Partides</th>
+                      <th>{t('lligues_concret.player')}</th>
+                      <th>{t('lligues_concret.team')}</th>
+                      <th>{t('lligues_concret.kda')}</th>
+                      <th>{t('lligues_concret.games')}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {mejoresKDA.map((player, index) => (
-                      <tr key={index}>
+                    {mejoresKDA.map((player, idx) => (
+                      <tr key={idx}>
                         <td>{player.Player}</td>
                         <td>{player.Team}</td>
                         <td>{player.KDA}</td>
@@ -322,22 +331,22 @@ function LliguesConcret() {
             </div>
 
             <div className="table">
-              <h2>Top CSM (Mitjana minions eliminats per minut)</h2>
+              <h2>{t('lligues_concret.top_csm_title')}</h2>
               {topCSM.length === 0 ? (
-                <p>Carregant dades de CSM...</p>
+                <p>{t('lligues_concret.loading_top_csm')}</p>
               ) : (
                 <table>
                   <thead>
                     <tr>
-                      <th>Jugador</th>
-                      <th>Equip</th>
+                      <th>{t('lligues_concret.player')}</th>
+                      <th>{t('lligues_concret.team')}</th>
                       <th>CSM</th>
-                      <th>Partides</th>
+                      <th>{t('lligues_concret.games')}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {topCSM.map((player, index) => (
-                      <tr key={index}>
+                    {topCSM.map((player, idx) => (
+                      <tr key={idx}>
                         <td>{player.Player}</td>
                         <td>{player.Team}</td>
                         <td>{player.CSM}</td>

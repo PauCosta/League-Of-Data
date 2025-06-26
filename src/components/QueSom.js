@@ -1,38 +1,42 @@
+import { useTranslation } from 'react-i18next';
 import './styles/Home.css';
 import './styles/QueSom.css';
 
-
 function QueSom() {
+  const { t } = useTranslation();
+
   return (
     <div className="main-container">
       <main className="main-content que-som">
-        <h1>QUÈ SOM?</h1>
+        <h1>{t('quesom.title')}</h1>
+
         <p className="intro-text">
-          League of Data (LoD) és la primera pàgina web de visualització de dades d'equips professionals del videojoc League of Legends en català. 
-          El propòsit d’aquest projecte és apropar i augmentar la comunitat catalana de l’apartat competitiu del LoL.
-        </p>
+          {t('quesom.intro_text_part1')}
+          <br />  <br />
+          {t('quesom.intro_text_part2')}
+          </p>
 
         <img
           src="/quesom_image1.png"
-          alt="Esdeveniment de LoL"
+          alt={t('quesom.image1_alt')}
           className="main-image"
         />
 
         <p className="secondary-text">
-          A LoD podràs descobrir les dades competitives més interessants dels teus jugadors i equips preferits.
+          {t('quesom.secondary_text_part1')}
           <br />
-          A més, tindràs l’oportunitat de seguir totes les lligues del Tier 1 junt amb les seves estadístiques sense la necessitat de fer més de tres clics.
+          {t('quesom.secondary_text_part2')}
         </p>
 
         <div className="image-row">
           <img
             src="/quesom_image2.png"
-            alt="Celebració d’un torneig"
+            alt={t('quesom.image2_alt')}
             className="side-image"
           />
           <img
             src="/quesom_estadisticas.png"
-            alt="Estadístiques de LoL"
+            alt={t('quesom.image3_alt')}
             className="side-image2"
           />
         </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Equips.css';
+import { useTranslation } from 'react-i18next';
 
 const teams = [
   // LCK
@@ -67,7 +68,8 @@ teams.forEach(team => {
 function Buscador_Equips({ variant = 'default' }) { //Apliquem variant per poder fer servir diferents estils css a equips.js i equips_concret.js
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
+  
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       const normalized = searchTerm.trim().toLowerCase();
@@ -75,7 +77,7 @@ function Buscador_Equips({ variant = 'default' }) { //Apliquem variant per poder
       if (teamId) {
         navigate(`/equips/${teamId}`);
       } else {
-        alert('Equip no trobat o fora de les 4 lligues principals.');
+        alert(t('buscador_equips.alert'));
       }
     }
   };
@@ -85,7 +87,7 @@ function Buscador_Equips({ variant = 'default' }) { //Apliquem variant per poder
       <input
         type="text"
         className={`search-bar ${variant === 'concret' ? 'search-bar-concret' : ''}`}
-        placeholder="Busca un equip..."
+        placeholder={t('buscador_equips.placeholder')}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleSearch}

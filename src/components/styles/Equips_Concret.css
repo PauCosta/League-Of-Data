@@ -81,3 +81,15 @@
 .table.roster-table {
   margin-bottom: 40px;
 }
+
+.winrate-red {
+  color: rgb(230, 0, 0);
+}
+
+.winrate-yellow {
+  color: #e6e200;
+}
+
+.winrate-green {
+  color: rgb(0, 179, 0);
+}

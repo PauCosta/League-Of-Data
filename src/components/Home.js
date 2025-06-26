@@ -1,16 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import './styles/Home.css';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
+  const { t } = useTranslation();
+
   return (
     <div className="main-container">
-
       <main className="main-content">
         <h1>League of Data (LoD)</h1>
         <p>
-          La primera pàgina web de visualització de dades d’equips professionals del videojoc
+          {t('home.description_part1')}
           <br />
-          League of Legends en català!
+          {t('home.description_part2')}
         </p>
 
         <img
@@ -21,16 +23,16 @@ function Home() {
 
         <div className="dictionary-section">
           <p>
-            Estàs perdut? Hi ha conceptes que no entens?
+            {t('home.dictionary_text')}
             <br />
-            Ja està disponible el{' '}
+            {t('home.dictionary_link_text_start')}{' '}
             <a
               href="https://es.scribd.com/document/672949555/Diccionari-LOL-en-catala#from_embed"
               className="highlight-link"
               target="_blank"
               rel="noopener noreferrer"
             >
-              diccionari de League of Legends en català!
+              {t('home.dictionary_link_text')}
             </a>
           </p>
           <a
@@ -40,13 +42,12 @@ function Home() {
           >
             <img
               src="/home_diccionari.png" 
-              alt="Diccionari"
+              alt={t('home.dictionary_alt')}
               className="dictionary-icon"
             />
           </a>
         </div>
       </main>
-
     </div>
   );
 }

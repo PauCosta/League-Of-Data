@@ -77,3 +77,26 @@
 .table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.05);
 }
+
+.win {
+  color: rgb(0, 179, 0);
+  font-weight: bold;
+}
+
+.loss {
+  color: rgb(230, 0, 0);
+  font-weight: bold;
+}
+
+.winrate-red {
+  color: rgb(230, 0, 0);
+}
+
+.winrate-yellow {
+  color: #e6e200;
+}
+
+.winrate-green {
+  color: rgb(0, 179, 0);
+}
+

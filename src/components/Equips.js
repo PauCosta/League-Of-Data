@@ -1,20 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BuscadorEquips from './Buscador_Equips.js';
 import './styles/Equips.css';
+import { useTranslation } from 'react-i18next';
 
 function Equips() {
+  const { t } = useTranslation();
+
   return (
     <div className="main-container">
       <main className="main-content equips-page">
         <div className="header-row">
-          <h1 className="equips-title">EQUIPS</h1>
+          <h1 className="equips-title">{t('equips.title')}</h1>
           <div className="search-container">
             <BuscadorEquips />
           </div>
         </div>
 
-        <p className="subtitle">Equips més populars</p>
+        <p className="subtitle">{t('equips.subtitle')}</p>
         <div className="teams-grid">
           <Link to="/equips/T1"><img src="/team_T1.png" alt="T1" className="team-logo" /></Link>
           <Link to="/equips/FNC"><img src="/team_FNC.png" alt="Fnatic" className="team-logo" /></Link>

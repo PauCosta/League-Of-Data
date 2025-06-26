@@ -143,3 +143,97 @@ body {
   border-bottom: 3px solid white;
   padding-bottom: 4px; 
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (max-width: 670px) {
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.3rem;
+    margin-left: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    margin: 0 0.3rem;
+    white-space: nowrap;
+  }
+
+  .language-select {
+    flex-shrink: 0;
+  }
+
+  .logo{
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.3rem;
+    margin-left: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    margin: 0 0.3rem;
+    white-space: nowrap;
+  }
+
+  .language-select {
+    flex-shrink: 0;
+  }
+
+  .logo{
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .footer p, .footer small {
+    font-size: 0.9rem;
+  }
+}

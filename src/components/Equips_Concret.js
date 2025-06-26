@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import BuscadorEquips from './Buscador_Equips.js';
 import './styles/Home.css';
 import './styles/Equips_Concret.css';
+import { useTranslation } from 'react-i18next';
 
 function EquipsConcret() {
   const { teamId } = useParams();
+  const { t } = useTranslation();
 
   const teamMapping = {
      T1: 'T1', FNC: 'Fnatic', GENG: 'Gen.G', TL: 'Team Liquid', G2: 'G2 Esports', BLG: 'Bilibili Gaming',
@@ -63,7 +65,7 @@ function EquipsConcret() {
         const data = await response.json();
         setClasificacion(data.cargoquery?.map(item => item.title) || []);
       } catch (err) {
-        console.error('Error en obtenir la classificació:', err);
+        console.error(t('errors_equips.fetchClasificacion'), err);
       }
     };
 
@@ -116,7 +118,7 @@ function EquipsConcret() {
 
         setCampeones(arr);
       } catch (err) {
-        console.error('Error en obtenir els campions de l’equip:', err);
+        console.error(t('errors_equips.fetchCampeones'), err);
       }
     };
 
@@ -197,7 +199,7 @@ function EquipsConcret() {
 
         setEstadisticasJugadores(playerStats);
       } catch (err) {
-        console.error('Error en obtenir estadístiques dels jugadors:', err);
+        console.error(t('errors_equips.fetchEstadisticasJugadores'), err);
       }
     };
 
@@ -232,7 +234,7 @@ function EquipsConcret() {
 
         setRoster(jugadores);
       } catch (err) {
-        console.error('Error en obtenir el roster:', err);
+        console.error(t('errors_equips.fetchRoster'), err);
       }
     };
 
@@ -240,7 +242,14 @@ function EquipsConcret() {
     fetchCampeones();
     fetchEstadisticasJugadores();
     fetchRoster();
-  }, [ligaNombre, teamNombre, teamId]);
+  }, [ligaNombre, teamNombre, teamId, t]);
+
+  const getWinRateClass = (winRate) => {
+    const rate = parseFloat(winRate);
+    if (rate < 50) return 'winrate-red';
+    if (rate < 60) return 'winrate-yellow';
+    return 'winrate-green';
+  };
 
   return (
     <div className="main-container">
@@ -253,23 +262,25 @@ function EquipsConcret() {
 
         {roster.length > 0 && (
           <div className="table roster-table">
-            <h2>Roster Actiu ({ligaId})</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Rol</th>
-                  <th>Jugador</th>
-                </tr>
-              </thead>
-              <tbody>
-                {roster.map((j, i) => (
-                  <tr key={i}>
-                    <td>{j.rol}</td>
-                    <td>{j.jugador}</td>
+            <h2>{t('equips_concret.roster_title', { liga: ligaId })}</h2>
+            <div style={{ overflowX: 'auto', maxWidth: '100%' }}>
+              <table>
+                <thead>
+                  <tr>
+                    {roster.map((j, i) => (
+                      <th key={`rol-${i}`}>{j.rol}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <tr>
+                    {roster.map((j, i) => (
+                      <td key={`jugador-${i}`}>{j.jugador}</td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
@@ -277,10 +288,10 @@ function EquipsConcret() {
           <div className="table-row">
             {clasificacion.length > 0 && (
               <div className="table">
-                <h2>Classificació {ligaId}</h2>
+                <h2>{t('equips_concret.clasificacion_title', { liga: ligaId })}</h2>
                 <table>
                   <thead>
-                    <tr><th>#</th><th>Equip</th><th>Record</th></tr>
+                    <tr><th>#</th><th>{t('equips_concret.team')}</th><th>Record</th></tr>
                   </thead>
                   <tbody>
                     {clasificacion.map((equipo, idx) => {
@@ -289,7 +300,9 @@ function EquipsConcret() {
                         <tr style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }} key={idx}>
                           <td>{idx + 1}</td>
                           <td style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipo.Team}</td>
-                          <td>{`${equipo.WinSeries}-${equipo.LossSeries}`}</td>
+                          <td>
+                            <span style={{ color: 'rgb(0, 179, 0)'}}>{equipo.WinSeries}</span> - <span style={{ color: 'rgb(230, 0, 0)'}}>{equipo.LossSeries}</span>
+                          </td>
                         </tr>
                       );
                     })}
@@ -299,13 +312,13 @@ function EquipsConcret() {
             )}
 
             <div className="table">
-              <h2>Campions més jugats</h2>
+              <h2>{t('equips_concret.champions_title')}</h2>
               <table>
                 <thead>
                   <tr>
-                    <th>Campió</th>
-                    <th>Partides</th>
-                    <th>% Vict.</th>
+                    <th>{t('equips_concret.champion')}</th>
+                    <th>{t('equips_concret.games')}</th>
+                    <th>{t('equips_concret.win_rate')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -313,7 +326,7 @@ function EquipsConcret() {
                     <tr key={i}>
                       <td>{c.Champion}</td>
                       <td>{c.GamesPlayed}</td>
-                      <td>{c.WinRate}%</td>
+                      <td className={getWinRateClass(c.WinRate)}>{c.WinRate}%</td> 
                     </tr>
                   ))}
                 </tbody>
@@ -322,15 +335,15 @@ function EquipsConcret() {
           </div>
 
           <div className="table">
-            <h2>Estadístiques Individuals dels Jugadors</h2>
+            <h2>{t('equips_concret.player_stats_title')}</h2>
             <table>
               <thead>
                 <tr>
-                  <th>Jugador</th>
+                  <th>{t('equips_concret.player')}</th>
                   <th>KDA</th>
                   <th>KP%</th>
                   <th>CSM</th>
-                  <th>OR%</th>
+                  <th>{t('equips_concret.gold')}</th>
                 </tr>
               </thead>
               <tbody>

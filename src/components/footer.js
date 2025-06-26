@@ -1,7 +1,10 @@
 import React from 'react';
 import './styles/Home.css'; 
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="social-icons">
@@ -43,11 +46,7 @@ function Footer() {
         </span>
       </div>
       <p>© 2025 League of Data</p>
-      <small>
-        League of Data no rep el suport de Riot Games i no reflecteix els punts de vista o opinions
-        de Riot Games ni de la seva gestió. League of Legends és una marca registrada de Riot Games,
-        Inc.
-      </small>
+      <small>{t('footer.disclaimer')}</small>
     </footer>
   );
 }
