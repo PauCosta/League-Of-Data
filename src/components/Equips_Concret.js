@@ -454,8 +454,8 @@ function EquipsConcret() {
                   <tr key={i}>
                     <td>
                       <Link 
-                        to={`/jugadors/${encodeURIComponent(j.jugador)}`} style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')} onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
-                        {j.jugador}
+                          to={`/jugadors/${encodeURIComponent(j.Jugador)}`}style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')} onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                          {j.Jugador}
                       </Link>
                     </td>
                     <td>{j.KDA}</td>
