@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import './styles/Jugadors_Concret.css';
 
 const teams = [
@@ -75,8 +76,14 @@ function JugadorsConcret() {
   const { jugadorId } = useParams();
   const { t } = useTranslation();
 
+  //Creem una constant amb els alias d'alguns jugadors, ja que sino no es poden buscar bé al uscar el seu nom complet amb els parèntesis
   const aliasMapping = {
     Bin: 'Bin (Chen Ze-Bin)',
+    Ice: 'Ice (Yoon Sang-hoon)',
+    Berserker: 'Berserker (Kim Min-cheol)',
+    APA: 'APA (Eain Stearns)',
+    Angel: 'Angel (Xiang Tao)',
+    Aki: 'Aki (Mao An)',
   };
 
   const [equipo, setEquipo] = useState('');
@@ -303,17 +310,22 @@ function JugadorsConcret() {
                       return (
                         <tr
                           key={idx}
-                          style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }}
-                        >
+                          style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }}>
                           <td>{idx + 1}</td>
                           <td className="lligues-team-cell">
-                            <img
-                              src={getTeamLogoPath(ligaId, equipoClasificado.Team)}
-                              alt={equipoClasificado.Team}
-                              className="lligues-team-logo"
-                              onError={(e) => (e.target.style.display = 'none')}
-                            />
-                            <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipoClasificado.Team}</span>
+                            <Link 
+                              to={`/equips/${getTeamIdByName(equipoClasificado.Team)}`} 
+                              style={{color: 'inherit', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                              <img
+                                src={getTeamLogoPath(ligaId, equipoClasificado.Team)}
+                                alt={equipoClasificado.Team}
+                                className="lligues-team-logo"
+                                onError={(e) => (e.target.style.display = 'none')}
+                              />
+                              <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>
+                                {equipoClasificado.Team}
+                              </span>
+                            </Link>
                           </td>
                            <td>
                             <span style={{ color: 'rgb(0, 179, 0)'}}>{equipoClasificado.WinSeries}</span> - <span style={{ color: 'rgb(230, 0, 0)'}}>{equipoClasificado.LossSeries}</span>

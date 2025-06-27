@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BuscadorEquips from './Buscador_Equips.js';
 import './styles/Home.css';
 import './styles/Equips_Concret.css';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const teams = [
@@ -161,8 +162,17 @@ function EquipsConcret() {
 
         const stats = {};
         raw.forEach(g => {
-          const teamSide = g.Team1 === teamNombre ? 'Team1' :
-                           g.Team2 === teamNombre ? 'Team2' : null;
+          const team1 = g.Team1?.toLowerCase();
+          const team2 = g.Team2?.toLowerCase();
+
+          const match = teams.find(t => t.id === teamId);
+          if (!match) return;
+
+          const matchesTeam1 = match.names.includes(team1);
+          const matchesTeam2 = match.names.includes(team2);
+
+          const teamSide = matchesTeam1 ? 'Team1' :
+                          matchesTeam2 ? 'Team2' : null;
           if (!teamSide) return;
 
           for (let i = 1; i <= 5; i++) {
@@ -349,7 +359,12 @@ function EquipsConcret() {
                 <tbody>
                   <tr>
                     {roster.map((j, i) => (
-                      <td key={`jugador-${i}`}>{j.jugador}</td>
+                      <td key={`jugador-${i}`}>
+                        <Link 
+                          to={`/jugadors/${encodeURIComponent(j.jugador)}`}style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')} onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                          {j.jugador}
+                        </Link>
+                      </td>
                     ))}
                   </tr>
                 </tbody>
@@ -374,13 +389,19 @@ function EquipsConcret() {
                         <tr style={{ backgroundColor: esEquipoActual ? '#433558' : 'transparent' }} key={idx}>
                           <td>{idx + 1}</td>
                           <td className="lligues-team-cell">
-                            <img
-                              src={getTeamLogoPath(ligaId, equipo.Team)}
-                              alt={equipo.Team}
-                              className="lligues-team-logo"
-                              onError={(e) => (e.target.style.display = 'none')}
-                            />
-                            <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>{equipo.Team}</span>
+                            <Link 
+                              to={`/equips/${getTeamIdByName(equipo.Team)}`} 
+                              style={{color: 'inherit', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                              <img
+                                src={getTeamLogoPath(ligaId, equipo.Team)}
+                                alt={equipo.Team}
+                                className="lligues-team-logo"
+                                onError={(e) => (e.target.style.display = 'none')}
+                              />
+                              <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal'}} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                                {equipo.Team}
+                              </span>
+                            </Link>
                           </td>
                           <td>
                             <span style={{ color: 'rgb(0, 179, 0)'}}>{equipo.WinSeries}</span> - <span style={{ color: 'rgb(230, 0, 0)'}}>{equipo.LossSeries}</span>
@@ -431,7 +452,12 @@ function EquipsConcret() {
               <tbody>
                 {estadisticasJugadores.map((j, i) => (
                   <tr key={i}>
-                    <td>{j.Jugador}</td>
+                    <td>
+                      <Link 
+                        to={`/jugadors/${encodeURIComponent(j.jugador)}`} style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')} onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                        {j.jugador}
+                      </Link>
+                    </td>
                     <td>{j.KDA}</td>
                     <td>{j.KP}</td>
                     <td>{j.CSM}</td>

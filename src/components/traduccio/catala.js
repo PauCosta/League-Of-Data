@@ -109,7 +109,7 @@ const traduccioCA = {
   quesom: {
     title: 'QUÈ SOM?',
     intro_text_part1: 'League of Data (LoD) és la primera pàgina web de visualització de dades d’equips professionals del videojoc League of Legends en català. El propòsit d’aquest projecte és apropar i augmentar la comunitat catalana de l’apartat competitiu del LoL.',
-    intro_text_part2: 'Per fer-ho, s’ha creat un tastet de què en un futur serà una pàgina web amb totes les dades que t’imaginis. Per això de moment, el nombre de taules és limitat',
+    intro_text_part2: 'Per fer-ho, s’ha creat un tastet de què en un futur serà una pàgina web amb totes les dades que t’imaginis. Per això de moment, el nombre de taules és limitat i hi ha vegades que tarda a carregar.',
     secondary_text_part1: 'A LoD podràs descobrir les dades competitives més interessants dels teus jugadors i equips preferits.',
     secondary_text_part2: 'A més, tindràs l’oportunitat de seguir totes les lligues del Tier 1 junt amb les seves estadístiques sense la necessitat de fer més de tres clics.',
     image1_alt: 'Esdeveniment de LoL',

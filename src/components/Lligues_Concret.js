@@ -1,5 +1,6 @@
 import './styles/Home.css';
 import './styles/Lligues_Concret.css';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -333,13 +334,15 @@ function LliguesConcret() {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td className="lligues-team-cell">
-                          <img
-                            src={getTeamLogoPath(ligaId, equipo.Team)}
-                            alt={equipo.Team}
-                            className="lligues-team-logo"
-                            onError={(e) => (e.target.style.display = 'none')}
-                          />
-                          <span>{equipo.Team}</span>
+                          <Link to={`/equips/${getTeamIdByName(equipo.Team)}`} style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                            <img
+                              src={getTeamLogoPath(ligaId, equipo.Team)}
+                              alt={equipo.Team}
+                              className="lligues-team-logo"
+                              onError={(e) => (e.target.style.display = 'none')}
+                            />
+                            <span>{equipo.Team}</span>
+                          </Link>
                         </td>
                         <td className="win">{equipo.WinSeries}</td>
                         <td className="loss">{equipo.LossSeries}</td>
@@ -376,7 +379,7 @@ function LliguesConcret() {
               )}
             </div>
           </div>
-
+          
           <div className="table-row">
             <div className="table">
               <h2>{t('lligues_concret.mejores_kda_title')}</h2>
@@ -395,17 +398,27 @@ function LliguesConcret() {
                   <tbody>
                     {mejoresKDA.map((player, idx) => (
                       <tr key={idx}>
-                        <td>{player.Player}</td>
+                        <td>
+                          <Link 
+                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }} >
+                            {player.Player}
+                          </Link>
+                        </td>
                         <td className="lligues-team-cell">
-                        <img
-                          src={getTeamLogoPath(ligaId, player.Team)}
-                          alt={player.Team}
-                          className="lligues-team-logo"
-                          onError={e => (e.target.style.display = 'none')}
-                          style={{ marginRight: '8px', verticalAlign: 'middle', width: '24px', height: '24px' }}
-                        />
-                        {player.Team}
-                      </td>
+                          <Link 
+                            to={`/equips/${getTeamIdByName(player.Team)}`} 
+                            style={{ 
+                              color: 'inherit', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                            <img
+                              src={getTeamLogoPath(ligaId, player.Team)}
+                              alt={player.Team}
+                              className="lligues-team-logo"
+                              onError={e => (e.target.style.display = 'none')}
+                              style={{ width: '24px', height: '24px' }}
+                            />
+                            <span>{player.Team}</span>
+                          </Link>
+                        </td>
                         <td>{player.KDA}</td>
                         <td>{player.Games}</td>
                       </tr>
@@ -432,16 +445,26 @@ function LliguesConcret() {
                   <tbody>
                     {topCSM.map((player, idx) => (
                       <tr key={idx}>
-                        <td>{player.Player}</td>
+                        <td>
+                          <Link 
+                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }}>
+                            {player.Player}
+                          </Link>
+                        </td>
                         <td className="lligues-team-cell">
-                          <img
-                            src={getTeamLogoPath(ligaId, player.Team)}
-                            alt={player.Team}
-                            className="lligues-team-logo"
-                            onError={e => (e.target.style.display = 'none')}
-                            style={{ marginRight: '8px', verticalAlign: 'middle', width: '24px', height: '24px' }}
-                          />
-                          {player.Team}
+                          <Link 
+                            to={`/equips/${getTeamIdByName(player.Team)}`} 
+                            style={{ 
+                              color: 'inherit', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                            <img
+                              src={getTeamLogoPath(ligaId, player.Team)}
+                              alt={player.Team}
+                              className="lligues-team-logo"
+                              onError={e => (e.target.style.display = 'none')}
+                              style={{ width: '24px', height: '24px' }}
+                            />
+                            <span>{player.Team}</span>
+                          </Link>
                         </td>
                         <td>{player.CSM}</td>
                         <td>{player.Games}</td>

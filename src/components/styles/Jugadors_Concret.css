@@ -19,6 +19,19 @@
   object-fit: contain;
 }
 
+.team-logo-large{
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeInScale 0.6s ease forwards;
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .jugador-nom-gran {
   font-size: 2rem;
   font-weight: bold;
@@ -49,6 +62,23 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   min-width: 300px;
   max-width: 550px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.table:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.table:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .table h2 {
