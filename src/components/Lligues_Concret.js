@@ -93,7 +93,7 @@ function LliguesConcret() {
   useEffect(() => {
     const fetchClasificacion = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -116,7 +116,7 @@ function LliguesConcret() {
 
     const fetchCampeones = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -175,7 +175,7 @@ function LliguesConcret() {
 
     const fetchMejoresKDA = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -237,7 +237,7 @@ function LliguesConcret() {
 
     const fetchTopCSM = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -341,7 +341,8 @@ function LliguesConcret() {
                               className="lligues-team-logo"
                               onError={(e) => (e.target.style.display = 'none')}
                             />
-                            <span onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                            <span onMouseEnter={(e) => (e.target.style.color = '#e2cc08')} 
+                            onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
                               {equipo.Team}
                             </span>
                           </Link>

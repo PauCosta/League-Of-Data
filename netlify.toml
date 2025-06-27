@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "build"
+
+[[redirects]]
+  from = "/api/leaguepedia"
+  to = "/.netlify/functions/leaguepedia"
+  status = 200
