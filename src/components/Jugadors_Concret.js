@@ -324,7 +324,7 @@ function JugadorsConcret() {
                                 className="lligues-team-logo"
                                 onError={(e) => (e.target.style.display = 'none')}
                               />
-                              <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }}>
+                              <span style={{ fontWeight: esEquipoActual ? 'bold' : 'normal' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
                                 {equipoClasificado.Team}
                               </span>
                             </Link>

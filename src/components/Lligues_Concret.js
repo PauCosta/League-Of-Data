@@ -341,7 +341,9 @@ function LliguesConcret() {
                               className="lligues-team-logo"
                               onError={(e) => (e.target.style.display = 'none')}
                             />
-                            <span>{equipo.Team}</span>
+                            <span onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                              {equipo.Team}
+                            </span>
                           </Link>
                         </td>
                         <td className="win">{equipo.WinSeries}</td>
@@ -400,7 +402,7 @@ function LliguesConcret() {
                       <tr key={idx}>
                         <td>
                           <Link 
-                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }} >
+                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
                             {player.Player}
                           </Link>
                         </td>
@@ -416,7 +418,9 @@ function LliguesConcret() {
                               onError={e => (e.target.style.display = 'none')}
                               style={{ width: '24px', height: '24px' }}
                             />
-                            <span>{player.Team}</span>
+                            <span onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                              {player.Team}
+                            </span>
                           </Link>
                         </td>
                         <td>{player.KDA}</td>
@@ -447,7 +451,7 @@ function LliguesConcret() {
                       <tr key={idx}>
                         <td>
                           <Link 
-                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }}>
+                            to={`/jugadors/${encodeURIComponent(player.Player)}`}style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
                             {player.Player}
                           </Link>
                         </td>
@@ -463,7 +467,9 @@ function LliguesConcret() {
                               onError={e => (e.target.style.display = 'none')}
                               style={{ width: '24px', height: '24px' }}
                             />
-                            <span>{player.Team}</span>
+                            <span onMouseEnter={(e) => (e.target.style.color = '#e2cc08')}onMouseLeave={(e) => (e.target.style.color = 'inherit')}>
+                              {player.Team}
+                            </span>
                           </Link>
                         </td>
                         <td>{player.CSM}</td>

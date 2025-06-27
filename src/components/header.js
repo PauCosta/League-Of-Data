@@ -31,7 +31,7 @@ function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Lógica para la bandera y nombre actual y el alternativo
+  //Canvi d'idioma i banderas
   const isCatalan = currentLang === 'ca';
   const currentFlag = isCatalan ? '/catalan_flag.svg' : '/uk_flag.png';
   const currentLangName = isCatalan ? t('header.language_ca') : t('header.language_en');
