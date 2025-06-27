@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --force && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build" 
   functions = "netlify/functions"
   publish = "build"
 
@@ -7,3 +7,4 @@
   from = "/api/leaguepedia"
   to = "/.netlify/functions/leaguepedia"
   status = 200
+  force = true
