@@ -6,7 +6,7 @@ function Home() {
   const { t } = useTranslation();
 
   return (
-    <div className="main-container">
+    <div className="main-container fade-in">
       <main className="main-content">
         <h1>League of Data (LoD)</h1>
         <p>

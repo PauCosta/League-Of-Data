@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import BuscadorJugadors from './Buscador_Jugadors.js';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './styles/Jugadors_Concret.css';
@@ -278,6 +279,7 @@ function JugadorsConcret() {
 
   return (
     <div className="main-container">
+      <BuscadorJugadors variant="concret"/>
       <main className="jugador-concret-content">
         <div className="jugador-header">
         

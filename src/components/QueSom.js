@@ -6,7 +6,7 @@ function QueSom() {
   const { t } = useTranslation();
 
   return (
-    <div className="main-container">
+    <div className="main-container fade-in">
       <main className="main-content que-som">
         <h1>{t('quesom.title')}</h1>
 
