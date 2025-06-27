@@ -4,7 +4,7 @@ export async function handler(event, context) {
   try {
     const baseUrl = 'https://lol.fandom.com/api.php';
 
-    const params = new URLSearchParams(JSON.parse(event.body));
+    const params = new URLSearchParams(event.body);
     params.append('origin', '*');
 
     const response = await fetch(baseUrl, {
