@@ -27,7 +27,7 @@ function Buscador_Jugadors({ variant = 'default' }) {
         let hasMore = true;
 
         while (hasMore) {
-          const response = await fetch('http://localhost:4000/api/leaguepedia', {
+          const response = await fetch('/.netlify/functions/leaguepedia', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({

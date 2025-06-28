@@ -107,7 +107,7 @@ function JugadorsConcret() {
     const fetchEquipoYLiga = async () => {
       try {
         const ligas = Object.values(ligaMapping).map(liga => `"${liga}"`).join(', ');
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -142,7 +142,7 @@ function JugadorsConcret() {
 
     const fetchClasificacion = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -165,7 +165,7 @@ function JugadorsConcret() {
 
     const fetchCampeonesJugador = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
@@ -220,7 +220,7 @@ function JugadorsConcret() {
 
     const fetchEstadisticasJugador = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/leaguepedia', {
+        const response = await fetch('/.netlify/functions/leaguepedia', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
