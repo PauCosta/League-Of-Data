@@ -4,7 +4,7 @@
   publish = "build"
 
 [[redirects]]
-  from = "/api/leaguepedia"
-  to = "/.netlify/functions/leaguepedia"
+  from = "/*"
+  to = "/index.html"
   status = 200
   force = true
