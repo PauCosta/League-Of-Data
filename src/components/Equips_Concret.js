@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const teams = [
-  //LCK
+  // LCK
   { id: 'T1', names: ['t1'] },
   { id: 'GENG', names: ['gen.g', 'geng', 'gen g'] },
   { id: 'KT', names: ['kt rolster', 'kt'] },
@@ -19,7 +19,7 @@ const teams = [
   { id: 'BRO', names: ['oksavingsbank brion', 'ok brion', 'bro'] },
   { id: 'BFX', names: ['bnk fearx', 'bfx'] },
 
-  //LEC
+  // LEC
   { id: 'G2', names: ['g2 esports', 'g2'] },
   { id: 'FNC', names: ['fnatic', 'fnc'] },
   { id: 'MKOI', names: ['movistar koi', 'koi', 'mkoi'] },
@@ -31,7 +31,7 @@ const teams = [
   { id: 'GX', names: ['giantx', 'gx'] },
   { id: 'RGE', names: ['rogue', 'rge', 'rogue (european team)'] },
 
-  //LPL
+  // LPL
   { id: 'JDG', names: ['jd gaming', 'jdg'] },
   { id: 'BLG', names: ['bilibili gaming', 'blg', 'bilibili'] },
   { id: 'TES', names: ['top esports', 'tes', 'top'] },
@@ -50,7 +50,7 @@ const teams = [
   { id: 'TT', names: ['thundertalk gaming', 'tt'] },
   { id: 'UP', names: ['ultra prime', 'up'] },
 
-  //LCS
+  // LCS
   { id: 'TL', names: ['team liquid', 'liquid', 'tl'] },
   { id: 'FLY', names: ['flyquest', 'fly'] },
   { id: 'C9', names: ['cloud9', 'cloud 9', 'c9'] },
