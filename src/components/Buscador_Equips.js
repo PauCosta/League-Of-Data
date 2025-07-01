@@ -86,7 +86,7 @@ function Buscador_Equips({ variant = 'default' }) { //Apliquem variant per poder
     <div className={`search-container ${variant === 'concret' ? 'concret' : ''}`}>
       <input
         type="text"
-        className={`search-bar ${variant === 'concret' ? 'search-bar-concret' : ''}`}
+        className={`search-bar-equips ${variant === 'concret' ? 'search-bar-equips-concret' : ''}`}
         placeholder={t('buscador_equips.placeholder')}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
