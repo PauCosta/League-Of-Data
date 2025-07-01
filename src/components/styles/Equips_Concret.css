@@ -25,12 +25,6 @@
   margin: 0;
 }
 
-.search-container-equips.concret .search-bar {
-  margin-top: 0;
-  margin-right: 16px;
-  transform: translateY(282%);
-}
-
 .tables-wrapper {
   display: flex;
   flex-direction: column;
@@ -98,13 +92,4 @@
 
 .winrate-green {
   color: rgb(0, 179, 0);
-}
-
-@media (max-width: 670px) {
-  
-.search-container-equips.concret .search-bar {
-  margin-right: 20px;
-  transform: translateY(-50%);
-}
-
 }

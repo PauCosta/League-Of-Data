@@ -25,7 +25,7 @@
   animation: fadeInScale 0.6s ease forwards;
 }
 
-.search-container-jugadors.concret .search-bar {
+.search-container.concret .search-bar {
   margin-top: 0;
   margin-right: 16px;
   transform: translateY(282%);
@@ -66,7 +66,6 @@
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  width: 100%;
   min-width: 300px;
   max-width: 550px;
   opacity: 0;
@@ -126,13 +125,4 @@
 
 .winrate-green {
   color: rgb(0, 179, 0);
-}
-
-@media (max-width: 670px) {
-  
-.search-container-jugadors.concret .search-bar {
-  margin-right: 20px;
-  transform: translateY(45%);
-}
-
 }

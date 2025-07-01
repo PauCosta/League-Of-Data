@@ -108,7 +108,7 @@ function Buscador_Jugadors({ variant = 'default' }) {
   };
 
   return (
-    <div className={`search-container-jugadors ${variant === 'concret' ? 'concret' : ''}`}>
+    <div className={`search-container ${variant === 'concret' ? 'concret' : ''}`}>
       <input
         type="text"
         className={`search-bar ${variant === 'concret' ? 'search-bar-concret' : ''}`}
