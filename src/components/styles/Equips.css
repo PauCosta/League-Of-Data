@@ -45,7 +45,7 @@
 }
 
 /* Estil per Equips_Concret.js */
-.search-container-equips .search-bar {
+.search-container.concret .search-bar {
   margin-top: 0;   
   margin-right: -16px;         
   transform: translateY(189%);

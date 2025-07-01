@@ -83,7 +83,7 @@ function Buscador_Equips({ variant = 'default' }) { //Apliquem variant per poder
   };
 
   return (
-    <div className={`search-container-equips ${variant === 'concret' ? 'concret' : ''}`}>
+    <div className={`search-container ${variant === 'concret' ? 'concret' : ''}`}>
       <input
         type="text"
         className={`search-bar ${variant === 'concret' ? 'search-bar-concret' : ''}`}

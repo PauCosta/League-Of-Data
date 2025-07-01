@@ -118,3 +118,10 @@
     width: 100px;
   }
 }
+
+@media (max-width: 430px) {
+  .table.roster-table {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+}
