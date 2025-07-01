@@ -109,19 +109,33 @@
     margin-bottom: 50px;
     margin-top: -3.5rem;
   }
+
+  .team-name-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
 }
 
 @media (max-width: 670px) {
   .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
-    width: 100px;
+    width: 50px;
   }
 }
 
 @media (max-width: 570px) {
   .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
-    width: 100px;
+    width: 40px;
+  }
+
+  .team-name-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
   }
 }
 
