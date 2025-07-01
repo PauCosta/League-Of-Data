@@ -44,13 +44,6 @@
   margin-top: 4rem;
 }
 
-/* Estil per Equips_Concret.js */
-.search-container.concret .search-bar {
-  margin-top: 0;   
-  margin-right: -16px;         
-  transform: translateY(189%);
-}
-
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

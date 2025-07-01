@@ -25,6 +25,12 @@
   margin: 0;
 }
 
+.search-container.concret .search-bar {
+  margin-top: 0;   
+  margin-right: -16px;         
+  transform: translateY(189%);
+}
+
 .tables-wrapper {
   display: flex;
   flex-direction: column;
