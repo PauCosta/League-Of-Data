@@ -94,7 +94,7 @@
   color: rgb(0, 179, 0);
 }
 
-@media (max-width: 670px) {
+@media (max-width: 720px) {
   .team-header {
     display: flex;
     flex-direction: column;
@@ -102,5 +102,19 @@
     gap: 8px;
     margin-bottom: 50px;
     margin-top: -3.5rem;
+  }
+}
+
+@media (max-width: 670px) {
+  .team-logo-large {
+    animation: fadeInScale .6s ease forwards;
+    width: 100px;
+  }
+}
+
+@media (max-width: 570px) {
+  .team-logo-large {
+    animation: fadeInScale .6s ease forwards;
+    width: 100px;
   }
 }
