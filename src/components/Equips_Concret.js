@@ -338,7 +338,7 @@ function EquipsConcret() {
             <img
               src={getTeamLogoPath(ligaId, teamNombre)}
               alt={teamNombre}
-              className="team-logo-large"
+              className="equips-team-logo-large"
             />
           )}
           <h1 className="team-name-title">{teamNombre}</h1>

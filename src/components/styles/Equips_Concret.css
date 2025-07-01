@@ -13,7 +13,7 @@
   margin-bottom: 50px;
 }
 
-.team-logo-large {
+.equips-team-logo-large {
   width: 100px;
   height: auto;
 }
@@ -106,14 +106,14 @@
 }
 
 @media (max-width: 670px) {
-  .team-logo-large {
+  .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
     width: 100px;
   }
 }
 
 @media (max-width: 570px) {
-  .team-logo-large {
+  .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
     width: 100px;
   }
