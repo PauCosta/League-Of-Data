@@ -93,3 +93,14 @@
 .winrate-green {
   color: rgb(0, 179, 0);
 }
+
+@media (max-width: 670px) {
+  .team-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 50px;
+    margin-top: -1.75rem;
+  }
+}
