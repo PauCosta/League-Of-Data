@@ -119,6 +119,15 @@
 }
 
 @media (max-width: 670px) {
+  .team-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 50px;
+    margin-top: -2.5rem;
+  }
+
   .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
     width: 50px;
@@ -126,6 +135,15 @@
 }
 
 @media (max-width: 570px) {
+  .team-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 50px;
+    margin-top: -2.5rem;
+  }
+
   .equips-team-logo-large {
     animation: fadeInScale .6s ease forwards;
     width: 40px;
